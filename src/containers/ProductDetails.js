@@ -1,12 +1,18 @@
 import React, { Component, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
 import {data} from '../data/data'
 
 export default function ProductDetails() {
 
+    const {cart} = useSelector(state => ({
+        ...state.cartReducer
+    }))
+
     const [qty, setQty] = useState(0)
 
+    const dispatch = useDispatch()
     const params = useParams()
     const id = params.id
 
@@ -27,6 +33,23 @@ export default function ProductDetails() {
         }
         setQty(nbr)
     }
+
+    const handleAddCart = (id) => {
+
+        let itemCart = {
+            id,
+            qty
+        }
+
+        if(qty > 0 && qty <= 10) {
+            dispatch({
+                type: 'ADDCART',
+                payload: itemCart
+            })
+        }
+    }
+    
+    console.log(cart)
 
   return (
     <div className='relative p-6 w-9/12'>
@@ -54,6 +77,7 @@ export default function ProductDetails() {
                             className='h-1/2 w-10 bg-zinc-400 flex items-center justify-center font-bold text-zinc-900 hover:bg-zinc-300 hover:text-zinc-800'>-</button>
                         </div>
                         <button
+                        onClick={(e) => e.preventDefault(handleAddCart(item.id))}
                         className='transition-all duration-200 ml-4 border-2 border-zinc-900 w-60 font-bold text-zinc-900 hover:bg-zinc-900 hover:text-white'
                         type='button'>Add to cart</button>
                     </div>
