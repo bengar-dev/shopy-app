@@ -13,5 +13,7 @@ Checklist :
 - ❌ Handling user's informations
 - ❌ Fake paiement page
 - ❌ Confirm page
+- ❌ Sliders Home page
+- ❌ Mobile & Tablet responsive
 
 Technologies : **React, Redux, React-router, Tailwind**
