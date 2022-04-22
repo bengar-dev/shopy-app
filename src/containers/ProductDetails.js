@@ -77,7 +77,7 @@ export default function ProductDetails() {
             
             <div key={item.id} className='w-full flex'>
                 <div className='p-1 w-1/2'>
-                    <img src={item.imgUrl} />
+                    <img src={item.imgUrl} alt={item.name}/>
                 </div>
                 <div className='p-2 pl-4 w-1/2 flex flex-col'>
                     <h1 className='text-2xl font-medium'>{item.name}</h1>
