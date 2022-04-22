@@ -1,6 +1,7 @@
 import React, { Component, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import ModalAlert from '../components/ModalAlert'
 
 import {data} from '../data/data'
 
@@ -10,6 +11,8 @@ export default function ProductDetails() {
         ...state.cartReducer
     }))
 
+    const [alert, setAlert] = useState(false)
+    const [typeAlert, setTypeAlert] = useState(0)
     const [qty, setQty] = useState(0)
 
     const dispatch = useDispatch()
@@ -42,17 +45,32 @@ export default function ProductDetails() {
         }
 
         if(qty > 0 && qty <= 10) {
-            dispatch({
-                type: 'ADDCART',
-                payload: itemCart
-            })
+            const item = data.find(p => p.id === id)
+            if(item.inStock) {
+                setAlert(true)
+                setTypeAlert(2)
+                setTimeout(() => {
+                    setAlert(false)
+                }, 3000)
+                dispatch({
+                    type: 'ADDCART',
+                    payload: itemCart
+                })
+            } else {
+                setAlert(true)
+                setTypeAlert(1)
+                setTimeout(() => {
+                    setAlert(false)
+                }, 3000)
+            }
         }
     }
-    
-    console.log(cart)
 
   return (
     <div className='relative p-6 w-9/12'>
+
+    {alert ? <ModalAlert 
+                type={typeAlert}/> : ''}
 
           {data.map(item => 
             item.id == params.id &&

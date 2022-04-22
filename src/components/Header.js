@@ -8,6 +8,14 @@ export default function Header() {
         ...state.cartReducer
     }))
 
+    const nbrItems = () => {
+        let total = 0
+        cart.forEach(el => {
+            total += el.qty
+        })
+        return total
+    }
+
   return (
     <header className='flex w-full justify-around items-center h-24 text-zinc-800'>
         <div className='relative flex justify-center'>
@@ -23,7 +31,7 @@ export default function Header() {
         </nav>
         <div className='flex items-center space-x-2'>
             <i className="fas fa-shopping-cart text-rose-400"></i>
-            <a href='#' className='transition-all duration-200 font-medium hover:text-rose-400'>Cart ({cart.length})</a>
+            <Link to='/cart' className='transition-all duration-200 font-medium hover:text-rose-400'>Cart ({nbrItems()})</Link>
         </div>
     </header>
   )
