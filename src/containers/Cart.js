@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import {Link} from 'react-router-dom'
 import ModalAlert from '../components/ModalAlert'
 import {data} from '../data/data'
 
@@ -46,6 +47,14 @@ export default function Cart() {
     }
   }
 
+  const handleDelete = (id) => {
+    let arrayCart = getCart.filter(p => p.id !== id)
+    localStorage.setItem('cart', JSON.stringify(arrayCart))
+    let array = [...myCart]
+    let filterArray = array.filter(p => p.object.id !== id)
+    setMyCart(filterArray)
+  }
+
   return (
     <div className='relative w-9/12'>
       {alert ? <ModalAlert 
@@ -73,14 +82,16 @@ export default function Cart() {
           className="transition-all duration-200 p-1 bg-emerald-400 hover:bg-emerald-500 text-emerald-800 text-sm"
           >Confirm</button>
           <p className='text-sm'><span className='font-medium'>$ {item.qty * item.object.price}</span></p>
-          <button className="transition-all duration-200 absolute right-0 bg-red-400 p-1 text-sm text-red-800 font-medium hover:bg-red-300">Delete</button>
+          <button 
+          onClick={(e) => e.preventDefault(handleDelete(item.object.id))}
+          className="transition-all duration-200 absolute right-0 bg-red-400 p-1 text-sm text-red-800 font-medium hover:bg-red-300">Delete</button>
         </div>
       </div>
     </div>
    
     )
     
-    : '' }
+    : <p className='text-center p-4 text-sm'>There is no item in your cart... check our <Link className='font-medium text-lg text-red-400 hover:text-red-300' to='/products'>Products</Link></p> }
     </div>
   )
 }

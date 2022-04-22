@@ -14,7 +14,7 @@ export default function ModalAlert(props) {
       msg = 'Quantity update'
     }
 
-    const classAlert = `text-white absolute z-20 -top-6 inset-x-1/2 left-50 w-max flex items-center justify-center p-2 text-xs rounded-lg ${props.type === 2 ? 'bg-red-400' : 'bg-emerald-400'}`
+    const classAlert = `text-white absolute z-20 -top-6 inset-x-1/2 left-50 w-max flex items-center justify-center p-2 text-xs rounded-lg ${props.type === 1 ? 'bg-red-400' : 'bg-emerald-400'}`
 
   return (
     
