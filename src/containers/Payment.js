@@ -1,16 +1,27 @@
 import React, {useState} from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import {v4 as uuidv4} from 'uuid'
 
 export default function Payment() {
 
-    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const {cart, user} = useSelector(state => ({
+        ...state.cartReducer,
+        ...state.userReducer
+    }))
 
+    const navigate = useNavigate()
     const [credit, setCredit] = useState({
         ccOwner: '',
         ccNumber : '',
         ccCrypto : '',
         ccExp : ''
     })
+    console.log(user)
+    if(!user.firstname) {
+        navigate('/')
+    }
 
     const handleDigit = (e) => {
         return /^-?\d+\.?\d*$/g.test(e)
@@ -54,9 +65,10 @@ export default function Payment() {
 
     const handleSubmit = () => {
         if(credit.ccOwner && credit.ccNumber && credit.ccExp && credit.ccCrypto) {
-            console.log('ok')
+            let cart = []
+            navigate('/confirm-order/' + uuidv4())
+            localStorage.setItem('cart', JSON.stringify(cart))
         } else {
-            console.log(credit)
             console.log('erreur')
         }
     }

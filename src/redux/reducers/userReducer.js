@@ -26,6 +26,25 @@ function userReducer(state = INITIAL_STATE, action) {
 
         }
 
+        case 'DELETEUSER' : {
+
+            console.log(action.payload)
+
+            return {
+                ...state,
+                user: {
+                    firstname: '',
+                    lastname: '',
+                    birthdate: '',
+                    address: '',
+                    zipcode: '',
+                    city: '',
+                    email: '',
+                    phone: ''
+                }
+            }
+        }
+
      }
 
      return state

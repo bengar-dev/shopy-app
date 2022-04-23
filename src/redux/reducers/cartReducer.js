@@ -71,6 +71,15 @@ function cartReducer(state = INITIAL_STATE, action) {
                 cart: filterArray
             }
         }
+
+        case 'DELETECART' : {
+            let newArr = []
+            console.log(action.payload)
+            return {
+                ...state,
+                cart: newArr
+            }
+        }
     }
 
     return state

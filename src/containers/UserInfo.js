@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import {data} from '../data/data'
 
 export default function UserInfo() {
 
     const [myCart, setMyCart] = useState([])
-
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const {cart, user} = useSelector(state => ({
         ...state.cartReducer,
@@ -14,6 +14,10 @@ export default function UserInfo() {
     }))
 
     const getCart = JSON.parse(localStorage.getItem('cart'))
+
+    if(!getCart || cart.length <= 0) {
+        navigate('/')
+    }
 
     const nbrItems = () => {
         let total = 0
