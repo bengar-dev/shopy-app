@@ -127,7 +127,7 @@ export default function Cart() {
       {myCart.length > 0 &&
       <div className='w-full bg-zinc-800 h-10 text-white flex items-center justify-end text-sm'>
         <p className='mr-8'>Total : <span className='ml-4 font-medium'>$ {totalCartPrice()}</span></p>
-        <button className='transition-all duration-200 mr-2 p-1 bg-emerald-400 hover:bg-emerald-300 text-emerald-800'>Confirm my cart</button>
+        <Link to='/confirm-info' className='transition-all duration-200 mr-2 p-1 bg-emerald-400 hover:bg-emerald-300 text-emerald-800'>Confirm my cart</Link>
       </div>
       }
     </div>
