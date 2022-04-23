@@ -9,7 +9,7 @@ Checklist :
 - ✅ Product details page ( display every product's details)
 - ✅ Handling Cart ( handling with localStorage quantity & product's id, add more quantity if product already in cart, if not add a new product to the cart)
 - ✅ Modal Alert ( Alert msg if the product is out of stock, and alert if the product is add to the cart correctly )
-- ❌ Cart page
+- ✅ Cart page
 - ❌ Handling user's informations
 - ❌ Fake paiement page
 - ❌ Confirm page
