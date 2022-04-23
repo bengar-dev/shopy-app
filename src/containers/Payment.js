@@ -75,11 +75,11 @@ export default function Payment() {
 
 
   return (
-    <div className='w-9/12 flex flex-col items-center'>
+    <div className='mt-10 md:mt-0 w-9/12 flex flex-col items-center'>
 
     <h1 className='text-center text-2xl font-medium'>Payment by credit card</h1>
 
-    <form className='text-sm p-4 w-1/2 mt-10 border flex flex-col space-y-2'>
+    <form className='text-sm p-4 w-full md:w-1/2 mt-10 border flex flex-col space-y-2'>
         <label htmlFor="cc-number" className='flex items-center'><i className='far fa-credit-card mr-4' />Credit card</label>
         <input type="text" 
         value={credit.ccOwner}

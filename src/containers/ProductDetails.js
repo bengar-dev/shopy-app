@@ -67,7 +67,7 @@ export default function ProductDetails() {
     }
 
   return (
-    <div className='relative p-6 w-9/12'>
+    <div className='relative p-6 w-full md:w-9/12'>
 
     {alert ? <ModalAlert 
                 type={typeAlert}/> : ''}
@@ -75,11 +75,11 @@ export default function ProductDetails() {
           {data.map(item => 
             item.id == params.id &&
             
-            <div key={item.id} className='w-full flex'>
-                <div className='p-1 w-1/2'>
+            <div key={item.id} className='w-full flex flex-col md:flex-row'>
+                <div className='p-1 w-full md:w-1/2'>
                     <img src={item.imgUrl} alt={item.name}/>
                 </div>
-                <div className='p-2 pl-4 w-1/2 flex flex-col'>
+                <div className='p-2 pl-4 w-full md:w-1/2 flex flex-col'>
                     <h1 className='text-2xl font-medium'>{item.name}</h1>
                     <span className='font-light text-zinc-800'>$ {item.price}</span>
                     <p className='mt-10 text-sm'>Availability : {item.inStock ? <span className='font-medium text-emerald-400'>In stock</span> : <span className='font-medium text-red-400'>Out of stock</span>}</p>

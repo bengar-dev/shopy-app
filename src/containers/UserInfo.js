@@ -70,10 +70,10 @@ export default function UserInfo() {
 
   return (
 
-    <div className='w-9/12 p-2'>
+    <div className='mt-10 md:mt-0 w-9/12 p-2'>
         <h1 className='text-center text-2xl font-medium'>Confirm your informations</h1>
-        <div className="mt-10 flex">
-            <form className='mt-6 flex flex-col text-sm w-1/2'>
+        <div className="mt-10 flex flex-col md:flex-row">
+            <form className='mt-6 flex flex-col text-sm w-full md:w-1/2'>
                 <label htmlFor="firstname" className="p-2">Firstname</label>
                 <input 
                 value={user.firstname}
@@ -114,7 +114,7 @@ export default function UserInfo() {
                 onChange={(e) => handleInput(e)}
                 type="text" id="phone" placeholder='+33...' className="border border-black p-2 outline-none"/>     
             </form>
-            <div className="w-1/2 m-10 h-max p-4 border flex flex-col items-center">
+            <div className="w-full mt-10 md:w-1/2 md:m-10 h-max p-4 border flex flex-col items-center">
                 <Link to='/payment' className="transition-all text-sm border border-yellow-500 text-yellow-900 bg-yellow-400 p-2 hover:shadow-lg">Confirm your order & pay</Link>
                 <p className="mt-4 p-2 text-xs">By placing your order, you agree to Shopy's Terms and Conditions. Please see our Privacy Notice, our Cookies Notice and our Interest-Based Advertising Notice.</p>
                 <h2 className='mt-6 w-full font-medium'>Your order resume</h2>

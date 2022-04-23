@@ -87,7 +87,7 @@ export default function Cart() {
   }
 
   return (
-    <div className='relative w-9/12 p-2'>
+    <div className='relative mt-6 md:mt-0 w-full md:w-9/12 p-2'>
       {alert ? <ModalAlert 
                 type={typeAlert}/> : ''}
     {myCart.length > 0 ? 

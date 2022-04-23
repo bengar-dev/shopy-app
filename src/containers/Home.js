@@ -4,7 +4,7 @@ import ProductsPrev from '../components/ProductsPrev'
 
 export default function Home() {
   return (
-    <div className='w-9/12'>
+    <div className='w-full lg:w-9/12'>
     <Slider />
     <ProductsPrev />
     </div>
