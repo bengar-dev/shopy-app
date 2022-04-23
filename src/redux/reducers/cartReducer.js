@@ -56,7 +56,6 @@ function cartReducer(state = INITIAL_STATE, action) {
             let findIndex = newArr.findIndex(p => p.id === action.payload.id)
             if(findIndex !== -1) {
                 newArr[findIndex].qty = parseInt(action.payload.qty)
-                console.log(newArr)
             }
             return {
                 ...state,

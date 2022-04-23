@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import {Link} from 'react-router-dom'
 import {data} from '../data/data'
 
 export default function UserInfo() {
@@ -110,7 +111,7 @@ export default function UserInfo() {
                 type="text" id="phone" placeholder='+33...' className="border border-black p-2 outline-none"/>     
             </form>
             <div className="w-1/2 m-10 h-max p-4 border flex flex-col items-center">
-                <button className="transition-all text-sm border border-yellow-500 text-yellow-900 bg-yellow-400 p-2 hover:shadow-lg">Confirm your order & pay</button>
+                <Link to='/payment' className="transition-all text-sm border border-yellow-500 text-yellow-900 bg-yellow-400 p-2 hover:shadow-lg">Confirm your order & pay</Link>
                 <p className="mt-4 p-2 text-xs">By placing your order, you agree to Shopy's Terms and Conditions. Please see our Privacy Notice, our Cookies Notice and our Interest-Based Advertising Notice.</p>
                 <h2 className='mt-6 w-full font-medium'>Your order resume</h2>
                 <div className='mt-4 w-full flex flex-col space-y-2 text-sm'>

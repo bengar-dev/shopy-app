@@ -19,7 +19,6 @@ function userReducer(state = INITIAL_STATE, action) {
             
             let newObject = {...state.user}
             newObject[action.payload.id] = action.payload.value
-            console.log(newObject)
             return {
                 ...state,
                 user: newObject

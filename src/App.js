@@ -7,6 +7,8 @@ import Products from './containers/Products'
 import ProductDetails from "./containers/ProductDetails";
 import Cart from "./containers/Cart";
 import UserInfo from "./containers/UserInfo";
+import Payment from "./containers/Payment";
+import ConfirmOrder from "./containers/ConfirmOrder";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
         <Route path='/product/:id' element={<ProductDetails />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/confirm-info' element={<UserInfo />} />
+        <Route path='/payment' element={<Payment />} />
+        <Route path='/confirm-order/:id' element={<ConfirmOrder />} />
       </Routes>
       </div>
     <Footer />  
