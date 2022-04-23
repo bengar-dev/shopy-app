@@ -1,14 +1,27 @@
 import React, {useEffect, useState} from 'react'
+import { useDispatch } from 'react-redux'
 import {Link} from 'react-router-dom'
 import ModalAlert from '../components/ModalAlert'
 import {data} from '../data/data'
 
 export default function Cart() {
 
+  const dispatch = useDispatch()
+
   const getCart = JSON.parse(localStorage.getItem('cart'))
   const [myCart, setMyCart] = useState([])
   const [alert, setAlert] = useState(false)
   const [typeAlert, setTypeAlert] = useState(0)
+
+  const totalCartPrice = () => {
+    let total = 0
+    if(myCart.length > 0) {
+      myCart.forEach(el => {
+        total += el.qty * el.object.price
+      })
+      return total
+    }
+  }
 
   useEffect(() => {
     let array = []
@@ -25,6 +38,7 @@ export default function Cart() {
     })
     setMyCart(array)
   }, [])
+  
 
   const handleChange = (e, id) => {
     let array = [...myCart]
@@ -37,6 +51,14 @@ export default function Cart() {
     let arrayCart = [...getCart]
     let findProduct = arrayCart.findIndex(p => p.id === id)
     if(findProduct !== -1) {
+      let object = {
+        qty,
+        id
+      }
+      dispatch({
+        type: 'EDITCART',
+        payload: object
+      })
       arrayCart[findProduct].qty = parseInt(qty)
       localStorage.setItem('cart', JSON.stringify(arrayCart))
       setAlert(true)
@@ -53,17 +75,26 @@ export default function Cart() {
     let array = [...myCart]
     let filterArray = array.filter(p => p.object.id !== id)
     setMyCart(filterArray)
+    dispatch({
+      type: 'DELCART',
+      payload: id
+  })
+    setAlert(true)
+    setTypeAlert(4)
+    setTimeout(() => {          
+         setAlert(false)           
+      }, 3000)                   
   }
 
   return (
-    <div className='relative w-9/12'>
+    <div className='relative w-9/12 p-2'>
       {alert ? <ModalAlert 
                 type={typeAlert}/> : ''}
     {myCart.length > 0 ? 
 
     myCart.map(item => 
       
-    <div className="w-full flex p-2" key={item.object.id}>
+    <div className="mb-2 w-full flex" key={item.object.id}>
       
       <div className='w-1/4 h-50'>
         <img src={item.object.imgUrl} className='h-50 w-60 object-cover '/>
@@ -92,6 +123,14 @@ export default function Cart() {
     )
     
     : <p className='text-center p-4 text-sm'>There is no item in your cart... check our <Link className='font-medium text-lg text-red-400 hover:text-red-300' to='/products'>Products</Link></p> }
+    <div>
+      {myCart.length > 0 &&
+      <div className='w-full bg-zinc-800 h-10 text-white flex items-center justify-end text-sm'>
+        <p className='mr-8'>Total : <span className='ml-4 font-medium'>$ {totalCartPrice()}</span></p>
+        <button className='transition-all duration-200 mr-2 p-1 bg-emerald-400 hover:bg-emerald-300 text-emerald-800'>Confirm my cart</button>
+      </div>
+      }
+    </div>
     </div>
   )
 }

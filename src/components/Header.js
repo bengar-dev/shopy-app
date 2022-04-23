@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {Link} from 'react-router-dom'
 
 export default function Header() {
 
+    const dispatch = useDispatch()
     const {cart} = useSelector(state => ({
         ...state.cartReducer
     }))
+
+    const getCart = JSON.parse(localStorage.getItem('cart'))
 
     const nbrItems = () => {
         let total = 0
@@ -15,6 +18,13 @@ export default function Header() {
         })
         return total
     }
+
+    useEffect(() => {
+        dispatch({
+            type: 'GETCART',
+            payload: getCart
+        })
+    },[])
 
   return (
     <header className='flex w-full justify-around items-center h-24 text-zinc-800'>

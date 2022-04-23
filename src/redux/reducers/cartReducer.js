@@ -31,6 +31,47 @@ function cartReducer(state = INITIAL_STATE, action) {
                 cart: newArr
             }
         }
+
+        case 'GETCART' : {
+            let newArr = []
+            const getCart = JSON.parse(localStorage.getItem('cart'))
+            const saveCart = () => {
+                localStorage.setItem('cart', JSON.stringify(newArr))
+            }
+            if(!getCart) {
+                saveCart()
+            } else {
+                newArr = [...getCart]
+            }
+
+            return {
+                ...state,
+                cart: newArr
+            }
+        }
+
+        case 'EDITCART' : {
+            const getCart = JSON.parse(localStorage.getItem('cart'))
+            let newArr = [...getCart]
+            let findIndex = newArr.findIndex(p => p.id === action.payload.id)
+            if(findIndex !== -1) {
+                newArr[findIndex].qty = parseInt(action.payload.qty)
+                console.log(newArr)
+            }
+            return {
+                ...state,
+                cart: newArr
+            }
+        }
+
+        case 'DELCART' : {
+            const getCart = JSON.parse(localStorage.getItem('cart'))
+            let filterArray = getCart.filter(p => p.id !== action.payload.id)
+            return {
+                ...state,
+                cart: filterArray
+            }
+        }
     }
 
     return state
