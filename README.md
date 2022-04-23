@@ -11,8 +11,8 @@ Checklist :
 - ✅ Modal Alert ( Alert msg if the product is out of stock, and alert if the product is add to the cart correctly )
 - ✅ Cart page
 - ✅ Handling user's informations
-- ❌ Fake paiement page
-- ❌ Confirm page
+- ✅ Fake paiement page
+- ✅ Confirm page
 - ❌ Sliders Home page
 - ❌ Mobile & Tablet responsive
 
